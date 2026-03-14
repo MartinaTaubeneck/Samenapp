@@ -880,6 +880,16 @@ function selectMarke(m) {
 
 // Init
 load();
+
+// FAB direct touchend fix for Android
+(function() {
+  var fab = document.getElementById('fab');
+  fab.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    fabAction();
+  }, {passive: false});
+})();
 if(!S.activeKat&&S.cats.length) S.activeKat=S.cats[0].id;
 S.activeSub='alle';
 renderAll();
