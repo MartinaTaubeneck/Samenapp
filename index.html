@@ -239,7 +239,21 @@ textarea.fi { resize: none; }
         <option value="">– wählen –</option>
       </select>
     </div>
-    <div class="fg"><label class="fl">MHD</label><input class="fi" id="sMhd" type="date"></div>
+    <div class="fg"><label class="fl">MHD (Monat / Jahr)</label>
+      <div style="display:flex;gap:8px">
+        <select class="fi" id="sMhdMonat" style="flex:1">
+          <option value="">– Monat –</option>
+          <option value="01">Januar</option><option value="02">Februar</option>
+          <option value="03">März</option><option value="04">April</option>
+          <option value="05">Mai</option><option value="06">Juni</option>
+          <option value="07">Juli</option><option value="08">August</option>
+          <option value="09">September</option><option value="10">Oktober</option>
+          <option value="11">November</option><option value="12">Dezember</option>
+        </select>
+        <select class="fi" id="sMhdJahr" style="flex:1">
+          <option value="">– Jahr –</option>
+        </select>
+      </div></div>
     <div class="fg">
       <label class="fl">Füllstand</label>
       <input type="range" class="slider" id="sFuell" min="0" max="100" value="100" oninput="document.getElementById('sFuellV').textContent=this.value+'%'">
@@ -306,6 +320,62 @@ textarea.fi { resize: none; }
   </div>
 </div>
 
+
+<!-- EINKAUF EXTRA SHEET -->
+<div class="overlay" id="einkaufSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">Eintrag hinzufügen</div>
+    <div class="fg">
+      <label class="fl">Symbol</label>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px">
+        <span style="font-size:24px;cursor:pointer" onclick="S._extraEmoji=this.textContent;document.getElementById('extraEmoji').textContent=this.textContent">🛒</span>
+        <span style="font-size:24px;cursor:pointer" onclick="S._extraEmoji=this.textContent;document.getElementById('extraEmoji').textContent=this.textContent">🌱</span>
+        <span style="font-size:24px;cursor:pointer" onclick="S._extraEmoji=this.textContent;document.getElementById('extraEmoji').textContent=this.textContent">⛏️</span>
+        <span style="font-size:24px;cursor:pointer" onclick="S._extraEmoji=this.textContent;document.getElementById('extraEmoji').textContent=this.textContent">🪴</span>
+        <span style="font-size:24px;cursor:pointer" onclick="S._extraEmoji=this.textContent;document.getElementById('extraEmoji').textContent=this.textContent">💧</span>
+        <span style="font-size:24px;cursor:pointer" onclick="S._extraEmoji=this.textContent;document.getElementById('extraEmoji').textContent=this.textContent">🌿</span>
+        <span style="font-size:24px;cursor:pointer" onclick="S._extraEmoji=this.textContent;document.getElementById('extraEmoji').textContent=this.textContent">🧤</span>
+        <span style="font-size:24px;cursor:pointer" onclick="S._extraEmoji=this.textContent;document.getElementById('extraEmoji').textContent=this.textContent">🪣</span>
+      </div>
+      <span id="extraEmoji" style="font-size:28px">🛒</span>
+    </div>
+    <div class="fg"><label class="fl">Was kaufen? *</label><input class="fi" id="extraText" placeholder="z.B. Pflanzstäbe, Kompost..."></div>
+    <div class="fg"><label class="fl">Notiz</label><input class="fi" id="extraNotiz" placeholder="z.B. Menge, Größe..."></div>
+    <div style="height:12px"></div>
+    <button class="btn btn-p" onclick="saveEinkaufExtra()">Hinzufügen</button>
+    <button class="btn btn-s" data-close-sheet="einkaufSheet" onclick="closeSheet('einkaufSheet')">Abbrechen</button>
+  </div>
+</div>
+
+<!-- NOTIZ SHEET -->
+<div class="overlay" id="notizSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">Notiz hinzufügen</div>
+    <div class="fg"><label class="fl">Titel</label><input class="fi" id="notizTitel" placeholder="z.B. Erfahrungen mit Tomaten..."></div>
+    <div class="fg"><label class="fl">Text *</label><textarea class="fi" id="notizText" rows="6" placeholder="Deine Notiz..."></textarea></div>
+    <div style="height:12px"></div>
+    <button class="btn btn-p" onclick="saveNotiz()">Speichern</button>
+    <button class="btn btn-s" data-close-sheet="notizSheet" onclick="closeSheet('notizSheet')">Abbrechen</button>
+  </div>
+</div>
+
+<!-- GARTENARBEIT SHEET -->
+<div class="overlay" id="gartenSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">Gartenarbeit planen</div>
+    <div class="fg"><label class="fl">Was ist zu tun? *</label><input class="fi" id="gartenTitel" placeholder="z.B. Hochbeet vorbereiten, Aussaat starten..."></div>
+    <div class="fg"><label class="fl">Datum</label><input class="fi" id="gartenDatum" type="date"></div>
+    <div class="fg"><label class="fl">Notiz</label><textarea class="fi" id="gartenNotiz" rows="3" placeholder="Details, Materialien..."></textarea></div>
+    <div style="height:12px"></div>
+    <button class="btn btn-p" onclick="saveGartenArbeit()">Speichern</button>
+    <button class="btn btn-s" data-close-sheet="gartenSheet" onclick="closeSheet('gartenSheet')">Abbrechen</button>
+    <button class="btn btn-d" id="gartenDelBtn" onclick="deleteGartenArbeit()" style="display:none">🗑 Löschen</button>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -326,6 +396,9 @@ let S = {
   ],
   samen: [],
   manKal: [],   // manually added calendar entries
+  gartenArbeiten: [],  // planned garden tasks in calendar
+  einkaufExtras: [],   // custom shopping list items
+  notizen: [],         // free notes
   // edit state
   _editId: null,
   _editEmoji: '🌱',
@@ -343,10 +416,13 @@ function load() {
     if(d.cats) S.cats=d.cats;
     if(d.samen) S.samen=d.samen;
     if(d.manKal) S.manKal=d.manKal;
+    if(d.gartenArbeiten) S.gartenArbeiten=d.gartenArbeiten;
+    if(d.einkaufExtras) S.einkaufExtras=d.einkaufExtras;
+    if(d.notizen) S.notizen=d.notizen;
   } catch(e){}
 }
 function save() {
-  localStorage.setItem('samenapp_v2', JSON.stringify({cats:S.cats,samen:S.samen,manKal:S.manKal}));
+  localStorage.setItem('samenapp_v2', JSON.stringify({cats:S.cats,samen:S.samen,manKal:S.manKal,gartenArbeiten:S.gartenArbeiten,einkaufExtras:S.einkaufExtras,notizen:S.notizen}));
 }
 
 // ===== NAVIGATION =====
@@ -376,19 +452,22 @@ function renderAll() {
   if(S.tab==='katalog') renderKatalog();
   else if(S.tab==='kalender') renderKalender();
   else if(S.tab==='jetzt') renderJetzt();
+  else if(S.tab==='notizen') renderNotizen();
   else renderShop();
 }
 
 function renderFab() {
   const fab = document.getElementById('fab');
   if(!fab) return;
-  if(S.tab==='katalog'||S.tab==='kalender') fab.style.display='flex';
+  if(S.tab==='katalog'||S.tab==='kalender'||S.tab==='shop'||S.tab==='notizen') fab.style.display='flex';
   else fab.style.display='none';
 }
 
 function fabAction() {
   if(S.tab==='katalog') openSamenSheet();
-  else if(S.tab==='kalender') openManKalSheet();
+  else if(S.tab==='kalender') { openGartenSheet(); }
+  else if(S.tab==='shop') addEinkaufExtra();
+  else if(S.tab==='notizen') addNotiz();
 }
 
 // ===== SUB NAV =====
@@ -498,7 +577,13 @@ function mhdSt(mhd) {
   const diff=(new Date(mhd)-new Date())/(1000*60*60*24);
   if(diff<0) return 'exp'; if(diff<90) return 'warn'; return 'ok';
 }
-function fmt(d) { if(!d) return ''; const p=d.split('-'); return `${p[2]}.${p[1]}.${p[0]}`; }
+function fmt(d) {
+  if(!d) return '';
+  const p=d.split('-');
+  if(p[2]==='01' && p[1]==='01') return p[0]; // only year
+  if(p[2]==='01') return `${p[1]}/${p[0]}`; // month/year
+  return `${p[2]}.${p[1]}.${p[0]}`;
+}
 
 // ===== KALENDER =====
 function renderKalender() {
@@ -552,8 +637,32 @@ function renderKalender() {
     <span><div class="kal-dot kv"></div>Voranzucht</span>
     <span><div class="kal-dot kd"></div>Direktsaat</span>
     <span><div class="kal-dot ke"></div>Ernte</span>
-  </div></div>`;
+  </div>`;
+
+  // Gartenarbeiten section
+  html+=`<div style="margin-top:18px">
+    <div style="font-family:'Lora',serif;font-size:16px;font-weight:600;color:var(--forest2);margin-bottom:10px">🌿 Geplante Gartenarbeiten</div>`;
+  if(S.gartenArbeiten.length===0){
+    html+=`<div style="font-size:13px;color:var(--text3);font-style:italic">Noch keine Einträge. Tippe ＋ um eine Gartenarbeit einzutragen.</div>`;
+  } else {
+    S.gartenArbeiten.forEach((g,i)=>{
+      html+=`<div style="background:white;border-radius:12px;padding:12px 14px;margin-bottom:6px;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px;border-left:4px solid var(--sage)">
+        <div style="flex:1">
+          <div style="font-weight:600;font-size:14px">${g.titel}</div>
+          ${g.datum?`<div style="font-size:12px;color:var(--text3)">${formatGartenDatum(g.datum)}</div>`:''}
+          ${g.notiz?`<div style="font-size:12px;color:var(--text2);margin-top:3px">${g.notiz}</div>`:''}
+        </div>
+        <button data-action="editgarten" data-id="${g.id}" style="background:none;border:none;font-size:16px;cursor:pointer;opacity:0.6">✏️</button>
+      </div>`;
+    });
+  }
+  html+=`</div></div>`;
   mc.innerHTML=html;
+}
+
+function formatGartenDatum(d) {
+  if(!d) return '';
+  const p=d.split('-'); return p.length===3?`${p[2]}.${p[1]}.${p[0]}`:d;
 }
 
 function setKalFilter(f) { S.kalFilter=f; renderKalender(); }
@@ -582,18 +691,45 @@ function renderJetzt() {
 function renderShop() {
   const mc = document.getElementById('mainContent');
   const low=S.samen.filter(s=>(s.fuell??100)<=20).sort((a,b)=>(a.fuell??100)-(b.fuell??100));
-  if(!low.length){
-    mc.innerHTML=`<div class="content-pad"><div class="empty"><div class="empty-icon">✅</div><div class="empty-text">Alle Samen ausreichend vorhanden!</div></div></div>`;
-    return;
-  }
   let html='<div class="content-pad">';
-  html+=`<div class="sec-label" style="padding:0;margin:0 0 8px">${low.length} Samen nachkaufen</div>`;
-  low.forEach(s=>{
-    html+=`<div class="shop-row"><span style="font-size:22px">${s.emoji||'🌱'}</span>
-      <div style="flex:1"><div style="font-weight:600">${s.name}</div>${s.sorte||s.marke?`<div style="font-size:12px;color:var(--text3)">${[s.sorte,s.marke].filter(Boolean).join(' · ')}</div>`:''}</div>
-      <span class="shop-pct">${s.fuell??100}%</span></div>`;
-  });
+
+  // Custom extras
+  if(S.einkaufExtras.length>0){
+    html+=`<div class="sec-label" style="padding:0;margin:0 0 8px">🛒 Meine Einkaufsliste</div>`;
+    S.einkaufExtras.forEach((item,i)=>{
+      html+=`<div class="shop-row">
+        <span style="font-size:20px">${item.emoji||'🛒'}</span>
+        <div style="flex:1">
+          <div style="font-weight:600">${item.text}</div>
+          ${item.notiz?`<div style="font-size:12px;color:var(--text3)">${item.notiz}</div>`:''}
+        </div>
+        <button data-action="delextra" data-id="${i}" style="background:none;border:none;font-size:18px;cursor:pointer;opacity:0.5">🗑</button>
+      </div>`;
+    });
+  }
+
+  if(low.length>0){
+    html+=`<div class="sec-label" style="padding:0;margin:12px 0 8px">🌱 Samen nachkaufen (${low.length})</div>`;
+    low.forEach(s=>{
+      html+=`<div class="shop-row"><span style="font-size:22px">${s.emoji||'🌱'}</span>
+        <div style="flex:1"><div style="font-weight:600">${s.name}</div>${s.sorte||s.marke?`<div style="font-size:12px;color:var(--text3)">${[s.sorte,s.marke].filter(Boolean).join(' · ')}</div>`:''}</div>
+        <span class="shop-pct">${s.fuell??100}%</span></div>`;
+    });
+  }
+
+  if(!low.length && !S.einkaufExtras.length){
+    html+=`<div class="empty"><div class="empty-icon">✅</div><div class="empty-text">Einkaufsliste ist leer!<br>Tippe ＋ für eigene Einträge</div></div>`;
+  }
+
   mc.innerHTML=html+'</div>';
+}
+
+function addEinkaufExtra() {
+  openSheet('einkaufSheet');
+  document.getElementById('extraText').value='';
+  document.getElementById('extraNotiz').value='';
+  document.getElementById('extraEmoji').textContent='🛒';
+  S._extraEmoji='🛒';
 }
 
 // ===== SAMEN SHEET =====
@@ -611,7 +747,23 @@ function openSamenSheet(id) {
   document.getElementById('sName').value=s?s.name:'';
   document.getElementById('sSorte').value=s?s.sorte||'':'';
   document.getElementById('sMarkeCustom').value=MARKEN.includes(s?.marke)?'':(s?.marke||'');
-  document.getElementById('sMhd').value=s?s.mhd||'':'';
+  // populate year options dynamically
+  const yearSel = document.getElementById('sMhdJahr');
+  yearSel.innerHTML = '<option value="">– Jahr –</option>';
+  const curYear = new Date().getFullYear();
+  for(let y=curYear; y<=curYear+10; y++) {
+    yearSel.innerHTML += `<option value="${y}">${y}</option>`;
+  }
+  // set values from saved mhd (format: YYYY-MM-01)
+  const mhdVal = s ? s.mhd||'' : '';
+  if(mhdVal) {
+    const parts = mhdVal.split('-');
+    document.getElementById('sMhdMonat').value = parts[1]||'';
+    document.getElementById('sMhdJahr').value = parts[0]||'';
+  } else {
+    document.getElementById('sMhdMonat').value = '';
+    document.getElementById('sMhdJahr').value = '';
+  }
   document.getElementById('sFuell').value=s?s.fuell??100:100;
   document.getElementById('sFuellV').textContent=(s?s.fuell??100:100)+'%';
   document.getElementById('sNotiz').value=s?s.notiz||'':'';
@@ -667,7 +819,13 @@ function saveSamen() {
     marke,
     katId:document.getElementById('sKat').value,
     subKat:document.getElementById('sSubkat').value,
-    mhd:document.getElementById('sMhd').value,
+    mhd:(()=>{
+      const m=document.getElementById('sMhdMonat').value;
+      const y=document.getElementById('sMhdJahr').value;
+      if(y&&m) return y+'-'+m+'-01';
+      if(y) return y+'-01-01';
+      return '';
+    })(),
     fuell:parseInt(document.getElementById('sFuell').value),
     notiz:document.getElementById('sNotiz').value.trim(),
     va:[...S._va], vd:[...S._vd], ve:[...S._ve],
@@ -686,6 +844,86 @@ function deleteSamen() {
   S.samen=S.samen.filter(s=>s.id!==S._editId);
   save(); closeSheet('samenSheet'); renderAll();
   showToast('🗑 Gelöscht');
+}
+
+
+// ===== NOTIZEN =====
+function renderNotizen() {
+  const mc = document.getElementById('mainContent');
+  let html='<div class="content-pad">';
+  if(S.notizen.length===0){
+    html+=`<div class="empty"><div class="empty-icon">📝</div><div class="empty-text">Noch keine Notizen.<br>Tippe ＋ um eine hinzuzufügen!</div></div>`;
+  } else {
+    S.notizen.forEach((n,i)=>{
+      html+=`<div style="background:white;border-radius:14px;padding:14px;margin-bottom:8px;box-shadow:var(--shadow);border-left:4px solid var(--sage)">
+        <div style="display:flex;align-items:flex-start;gap:10px">
+          <div style="flex:1">
+            <div style="font-family:'Lora',serif;font-weight:600;font-size:15px;margin-bottom:4px">${n.titel||'Notiz'}</div>
+            <div style="font-size:13px;color:var(--text2);white-space:pre-wrap">${n.text}</div>
+            <div style="font-size:11px;color:var(--text3);margin-top:6px">${n.datum||''}</div>
+          </div>
+          <button data-action="delnotiz" data-id="${i}" style="background:none;border:none;font-size:18px;cursor:pointer;opacity:0.5">🗑</button>
+        </div>
+      </div>`;
+    });
+  }
+  mc.innerHTML=html+'</div>';
+}
+
+function addNotiz() {
+  document.getElementById('notizTitel').value='';
+  document.getElementById('notizText').value='';
+  openSheet('notizSheet');
+}
+
+function saveNotiz() {
+  const titel=document.getElementById('notizTitel').value.trim();
+  const text=document.getElementById('notizText').value.trim();
+  if(!text){showToast('❗ Bitte Text eingeben');return;}
+  S.notizen.unshift({
+    id:uid(), titel, text,
+    datum: new Date().toLocaleDateString('de-DE',{day:'2-digit',month:'2-digit',year:'numeric'})
+  });
+  save(); closeSheet('notizSheet'); renderAll();
+  showToast('📝 Notiz gespeichert');
+}
+
+// ===== GARTENARBEITEN =====
+function openGartenSheet(id) {
+  S._gartenEditId = id||null;
+  const g = id ? S.gartenArbeiten.find(x=>x.id===id) : null;
+  document.getElementById('gartenTitel').value = g?g.titel:'';
+  document.getElementById('gartenDatum').value = g?g.datum:'';
+  document.getElementById('gartenNotiz').value = g?g.notiz||'':'';
+  document.getElementById('gartenDelBtn').style.display = g?'block':'none';
+  openSheet('gartenSheet');
+}
+
+function saveGartenArbeit() {
+  const titel=document.getElementById('gartenTitel').value.trim();
+  const datum=document.getElementById('gartenDatum').value;
+  if(!titel){showToast('❗ Bitte Titel eingeben');return;}
+  const obj={id:S._gartenEditId||uid(),titel,datum,notiz:document.getElementById('gartenNotiz').value.trim()};
+  if(S._gartenEditId){
+    const i=S.gartenArbeiten.findIndex(x=>x.id===S._gartenEditId);
+    S.gartenArbeiten[i]=obj;
+  } else { S.gartenArbeiten.unshift(obj); }
+  save(); closeSheet('gartenSheet'); renderAll();
+  showToast('✅ Gartenarbeit gespeichert');
+}
+
+function deleteGartenArbeit() {
+  if(!S._gartenEditId||!confirm('Löschen?')) return;
+  S.gartenArbeiten=S.gartenArbeiten.filter(x=>x.id!==S._gartenEditId);
+  save(); closeSheet('gartenSheet'); renderAll();
+}
+
+function saveEinkaufExtra() {
+  const text=document.getElementById('extraText').value.trim();
+  if(!text){showToast('❗ Bitte Eintrag eingeben');return;}
+  S.einkaufExtras.push({id:uid(),emoji:S._extraEmoji,text,notiz:document.getElementById('extraNotiz').value.trim()});
+  save(); closeSheet('einkaufSheet'); renderAll();
+  showToast('✅ Hinzugefügt');
 }
 
 // ===== MANUELLER KALENDER =====
@@ -867,6 +1105,9 @@ document.addEventListener('touchend', function(e) {
     if (action==='edit') openSamenSheet(id);
     else if (action==='fuell') quickFuellstand(id);
     else if (action==='editkal') openManKalSheet(id);
+    else if (action==='editgarten') openGartenSheet(id);
+    else if (action==='delextra') { S.einkaufExtras.splice(parseInt(id),1); save(); renderAll(); }
+    else if (action==='delnotiz') { S.notizen.splice(parseInt(id),1); save(); renderAll(); }
     return;
   }
   // FAB
@@ -902,6 +1143,9 @@ renderAll();
   </button>
   <button class="bnav-btn" id="bnav-shop" onclick="switchTab('shop')">
     <span class="bnav-icon">🛒</span><span class="bnav-label">Einkauf</span>
+  </button>
+  <button class="bnav-btn" id="bnav-notizen" onclick="switchTab('notizen')">
+    <span class="bnav-icon">📝</span><span class="bnav-label">Notizen</span>
   </button>
 </div>
 </body>
