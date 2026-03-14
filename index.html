@@ -817,19 +817,6 @@ function showToast(msg) {
 }
 
 // ===== TOUCH: visual feedback only =====
-// All actions are handled by onclick — this only adds the press effect
-document.addEventListener('touchstart', e => {
-  const el = e.target.closest('button, .mpill, .marke-chip');
-  if (el) el.style.opacity = '0.55';
-}, {passive: true});
-document.addEventListener('touchend', e => {
-  const el = e.target.closest('button, .mpill, .marke-chip');
-  if (el) setTimeout(() => el.style.opacity = '', 150);
-}, {passive: true});
-document.addEventListener('touchcancel', () => {
-  document.querySelectorAll('button, .mpill, .marke-chip').forEach(el => el.style.opacity = '');
-}, {passive: true});
-
 function pickEmoji(el, e) {
   S._editEmoji = e;
   document.getElementById('pickedEmoji').textContent = e;
@@ -838,30 +825,6 @@ function pickMkEmoji(el, e) {
   S._mkEmoji = e;
   document.getElementById('mkEmoji').textContent = e;
 }
-
-// Delegated click for dynamically rendered card buttons
-document.getElementById('mainContent').addEventListener('click', function(e) {
-  const btn = e.target.closest('[data-action]');
-  if (!btn) return;
-  const id = btn.dataset.id;
-  const action = btn.dataset.action;
-  if (action === 'edit') openSamenSheet(id);
-  else if (action === 'fuell') quickFuellstand(id);
-  else if (action === 'editkal') openManKalSheet(id);
-});
-
-document.getElementById('mainContent').addEventListener('touchend', function(e) {
-  const btn = e.target.closest('[data-action]');
-  if (!btn) return;
-  e.preventDefault();
-  const id = btn.dataset.id;
-  const action = btn.dataset.action;
-  if (action === 'edit') openSamenSheet(id);
-  else if (action === 'fuell') quickFuellstand(id);
-  else if (action === 'editkal') openManKalSheet(id);
-}, {passive: false});
-
-// Helper functions for onclick (iOS fallback)
 function toggleSpill(pid, m) {
   const arr=pid==='pillsV'?S._va:pid==='pillsD'?S._vd:S._ve;
   const i=arr.indexOf(m); if(i>-1)arr.splice(i,1);else arr.push(m);
@@ -878,18 +841,49 @@ function selectMarke(m) {
   renderMarkeChips();
 }
 
+// ===== EINHEITLICHER TOUCH-HANDLER =====
+let _scrolled = false;
+document.addEventListener('touchstart', function(e) {
+  _scrolled = false;
+  const el = e.target.closest('button, .mpill, .marke-chip');
+  if (el) { el._sop = el.style.opacity; el.style.opacity = '0.55'; }
+}, {passive: true});
+
+document.addEventListener('touchmove', function() {
+  _scrolled = true;
+  document.querySelectorAll('button, .mpill, .marke-chip').forEach(el => el.style.opacity = el._sop||'');
+}, {passive: true});
+
+document.addEventListener('touchend', function(e) {
+  document.querySelectorAll('button, .mpill, .marke-chip').forEach(el => el.style.opacity = el._sop||'');
+  if (_scrolled) return;
+
+  // data-action (dynamisch gerenderte Karten-Buttons)
+  const ab = e.target.closest('[data-action]');
+  if (ab) {
+    e.preventDefault();
+    const id = ab.dataset.id, action = ab.dataset.action;
+    if (action==='edit') openSamenSheet(id);
+    else if (action==='fuell') quickFuellstand(id);
+    else if (action==='editkal') openManKalSheet(id);
+    return;
+  }
+  // FAB
+  if (e.target.closest('#fab')) { e.preventDefault(); fabAction(); return; }
+  // Bottom Nav
+  const bn = e.target.closest('.bnav-btn');
+  if (bn) { e.preventDefault(); switchTab(bn.id.replace('bnav-','')); return; }
+  // Überkategorie-Tabs
+  const sk = e.target.closest('[data-skat]');
+  if (sk) { e.preventDefault(); setActiveKat(sk.dataset.skat); return; }
+  // Unterkategorie-Tabs
+  const ss = e.target.closest('[data-ssub]');
+  if (ss) { e.preventDefault(); setActiveSub(ss.dataset.ssub); return; }
+  // Alle anderen Buttons haben onclick — Browser übernimmt
+}, {passive: false});
+
 // Init
 load();
-
-// FAB direct touchend fix for Android
-(function() {
-  var fab = document.getElementById('fab');
-  fab.addEventListener('touchend', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    fabAction();
-  }, {passive: false});
-})();
 if(!S.activeKat&&S.cats.length) S.activeKat=S.cats[0].id;
 S.activeSub='alle';
 renderAll();
