@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Samen">
+<meta name="theme-color" content="#2d5a27">
+<link rel="manifest" href="data:application/manifest+json;base64,ewogICJuYW1lIjogIk1laW5lIFNhbWVuIiwKICAic2hvcnRfbmFtZSI6ICJTYW1lbiIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMWUzZDFhIiwKICAidGhlbWVfY29sb3IiOiAiIzJkNWEyNyIsCiAgImljb25zIjogW3sic3JjIjogImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBTUFBQUFEQUNBSUFBQURkdnZ0UUFBQUpXMGxFUVZSNDJ1M2R1WkliTnhBRzRIa1BXYmRreTBmazJJbXUxZUhFK1hMSlhUK1BFNytCRTkrcThtdjRWcFZmUTVtcWxKc1NKWXJIQUdnQWpVWjM0Ni82UXk0NUJMNzZnU0c1TTlPcmx5LzY1c3FYbDdLeSt1MmtSVTYrK1R3VWhVKzd5V1pBK2s3ZkpLVGs2U1dXR0tJajhCTEo0YklOaUF0Tk96MlJlV1hVMCs2MXNrYlBEQ0IyTi9KNkdxMlM3QzlhTnBKNkFUV2l3NjZuQ3gzMkE2Z2NVbDJBMnRIaEJkU2REdVBCc0F4c2YwQ3Q2WGpWVTNsSXZDUGNCNUFBSFM1QUN1blVIRjZqY1JZRkpLYW5FcEJ5T2dXSDJuU29oUUJKNmlrR0pIbUtMbk9xTHpQYWJRRUoweWsyWkk1Tzh1Q0ZCN3dKb0Y1NnNnREowR24wbWZqc0crazE1c3lBT3VvaEdwSnNuZGJmcnJUZTZ6QWFJZ0c2K3ZSUzkralo3bnoxM1JlNVIwaVBocUhlRFFNZ1BXOUd3M1puclNjRXFNeVROakc1aGlZcmVvNW5SWDZudk5GREJPUXBmZ0J0MHVVa2E2c0hnS2lBTkwrbExzVXpMS0NJb2NtaW5tTkdZblNHQlJReU5OblZ3MzRHZExDM0Rla1pGdENzb1FDZ0p4OFlUUldhL2FlS0FUSTdQcFVoQWZMM3RpbGNqZ05BRkVOREFDb0xBSlVBZ2hzQXlqSUVRQURFQndob0FDalgwQjZnYTA4K1FMYUpBTUxnekFEQ29BQlFnU0VBQWlBQUFxRHVnREFjQUZSbUNJQUFDSUFBQ0lBQXlEQWdERVFCb04rL1B3MWxxRkVDb0JKQUVUMmprUUlnQ1VDT0pRSFFUSXA5RENnSmdLVHBPR1AwR3REMXg1Y1JZVHE3TVQxdUFGUkpaN0dURVEwTkRhakN5dHY4OGNQN3pEN0FQYU5CQVJXZzJiVkNUNjRrZTRDZ0owS25ERTI5SkFDeXEyZkJUaWNneVltaENYUWFWVTQ5SXdDeW9rZVVqak5ERS9USTA4bGlCRUJxOVN5NjYzRmdhRUx4RVBQbmoyZFpLV0prejlDRTR1RjFVeU1wWWdpQXRPZ1JjMVBHS0xLY0tRVjA0L0ZsWjZuVXcwNG5sMUhFa01MUm5xQkhoazRXbzhoYUJrQWE5WWpSb1RPeVVrTHVBUzEwNm5GamFCcFpUKzU4Ly9WVE9xTVptcUFuQjgyU2tHeE1CUnRxVFlBZVhiR2UzSDFQSnAxbFJhaU1Ta3BJeCtCUDBCT3VuQ1ZUU0l4eURRRlFPMEQxZXBZTmttWmswZEFFUGUzcE1CZ0NJTDE2Uk9oa01MSmxhSUlldXA2L2Y0Nmx0U0dsZ0c0K3VtSXhkRUFwUGJWdVNqSEZER1dWVU4rSm1LQW4wODBxbkZ4RzJZWUFTSVdlN2JMMTRyOXY0eUdnU1V2eWJjZ0JvTHl0ejNyQ2ttN21KSzJLUWpJRVFHYnFwNEJPdFNSS0ZkVWFBaURtK21sQnA2Nk5DZzNwTDZISlgvMjBvN09iZjM1WmJjTmg2Q3pURUFDSjFFOGpQY2VHYUpnU2hpeXVZaFAweURMaU1hUm5GWE1GU0Y1UHhGQ1lVY1NRdlJLYVhOYVBwSjUzaHM3ZkpNTVFld2tCRUUvOXlPdlpBVFRES05NUUFJMm5aODdRZWNwUTNrS205bHhzdW5WeVZYbm9nRHJxS1RiRVcwTHlzek81MGFNQlVGTkRBT1M4ZmdLQTRvWUFDSHFhR0FLZ2dRSDkrK3Y1T2lGRHprcklFaUFUZXNLR2ZKYlFoUHJSV2tJQTFCaVFxcE92T2tQenF4Z0FEVm8vdTRCQ0N4bFhDUUdRZjBBMFF3RFVZL3VzR1ZCbUNkVnNnd0RJWGYxRVN5aTRpckhzb3dISS9QYVpjUlV6QU9qMnlWVnQ4YkYrdlFGMGtWTkNwRlVzQ1VoNHN2UURXZ0JRN3BuODBJRE1mZjJlQW5RUldjVUFxQU9nWGo5OGJnOW9CVUNpR3lCemdDaXJHQURKYllER0JFVDVMRkVZMERVOXlWcS83QUM2RUFja04yWFQ3WWZYOUFTQWVBQUpUcGxxUUwzKzc1MHJ6NTlkNUo2SUFSQWpvQVVBRlFBU25qSUFNZ1lvL1VuMHNJQnlOMEFBQkVDMWdDalhPUVNndG9BK2ZIaE5TWElCRVMrVTJWRlBGMERDczZZWFVISURaQndRNHlmUnB3QjBER2dCUUFBa0FVaW5vWTJlVEVBbDM4WWZmd2dFUUFNQnF2OUZJZ0FWN3FBUDdsV2dXMDh4b0RNQUFxRFl0L0hzZ09Rbnpna2dQWWEyZWtZNGg3Y09hR2tXa0pOVE1GZUExaE9nVW8vbkhiUTNRSDBOUFgvMmRhUitYTzZnQWFoYi9UVDZKUkFBMVFKYVQwWjNQWTBBS2R4QnZ3YjAwWVByR2xKL0ZyWjdkMEVkaTVmQWY0VHREVnFYaWZNSlNOTFFnWjZ5K21IWkFBRlFGYUIzaGxhU2hpaDZ4RFpBQU1RTWFETlZMZWtjNmttZGZEWDhqK1plRStjWlVEdERLVDJWMTFRb3VhNFVBSEVCbWltaHpmdzFwVVBRYzk3MHluWUFkRnI4Y3c0Q29OVjJGcmxPMU12MHRMc2lCd0FKQVZwbk03c3NibzcwWEVoZDFrNkZIdHVBamo5TGpHeURqZ0h0NVAzMFU3ams2MmwrWlZZQUtnWlVWVUtWaHZicDVPcFpNVjZkSG9DT0RiVUZkR1RvVUVNeG5kWlhGbGUxZm1rR2RNb0ZpRnhDTTR3T0pNMCtJS3BINHQ0R25RSGRlWEJkU1ZqTzVDdEtLR2dvblBNaVBjeDNWK2s3YTVZQXNaZFF3TkI1QVozNkc0UloxRE1tSUtLaFdVbkJSNUwxckhodkx3ZEEvSUM0RGFYVDRnYVhsTzJ6aGxuVERJaTBqNmFYVUdRaEsyYlU5eGE3QUtTb2hISVpCZjZjUncrbGZnQ29BeUNpb1pDaytPT0ZieEd2Wk1xbU8vZHY2RWtab0RwRHF4UUxTbFpOOWN3RDBqRmx5Z0dkem80bUVaQ0lvU1FkbHNWTHFSNTFnSnFWRU1YUXFvWk9PejN6dXg4QWtnRVVLYUV3bzFXV216Q2RpQjRuOVdNVmtJZ2hVc0owV3VrQm9PeHRVSDBKSlEwVk1FclNxZGVqdjM1ZUEvcjQvZzF0YVZsQ3krakVwekVSL3J4RUQ3MSt0RTJXTjBDMEhpSXh5cytTVWM4c0lJV1RaUUpRUVFuSkc0clRZZEFEUUNwS2FOL1FVcVI0M09veEJLaXBvV1dsbXlpZGJEMVdGaThuZ0lvTnpURmE1cnBKMFlucGNWQS9lZ0d4bEJERlVJQVJLY2xuZHEvSENhQjZRM1JKeEtmYWJPVGQ2MUVOaU52UUdYbnU2MU9peHlxZ1Z5OWZ1QWNrYUNoQng1a2U3WUI0RFdVdFoyVjZrZ2ZnVEk5UlFQV0d6dGhiaDEwUEFQVXBJWXFoSFVabmZlbFkxL01XMENmM2JtcE9iZ2tSRGUwek9tdmhwbGlQOGhuWmpRRkFUUTNOU1VvazY1bDk2ekVQaU5FUWV5SUg1a2FQR1VCbEpkU1IwU0I2TEFHeVlpaDVNQ0U5aGdHTllFaUFFZVVZbk9sWnkvRUJpR3FvRVNNeUhWZDZUQUppTWNURmlQNXlMdlZZQlJRM2xNV29URkxXODhlWExkTjY5Z0NOYkNoT3F1YXB2QmJQVm85aFFGRkRwNVdHV09LNGVKd0FTaHJxeFNoZVBENzB6QUR5YUVpYVVaS09NejJIZ0Q2OWQ5TmlLSWFhTXRxK1JQeElqQTd2Yk9ZQitUWFVpaEdSamxjOWZnRFJEUEZJMmtHeklMNm9KejBKUUtZTjVUQTYzWGRBRjVQaHhoK2RBejBPQVdVYUNub3E0K0tiRGhXUUEwTVZqQmppbGM2eG5qQ2d1N2Q4UkpxT2wzRUxoUXJJa3lFWlJ1N3B6T3FKQVhKbXFCR2pFZHhFOUNRQStUUEVKV2tjTjNFOWd3SXE4RFNhR0RaQWd4aEN5dlNRQU1FUTlOUUNXdWV6dTdlUTBVS0JRUVVFUTlCVEN3aUdvS2NXRUJpQkRnTWdHSUtlV2tBd0JEMjFnTUJvY0RvOGdNQm9XRHFjZ01Cb1FEcjhnTUJvS0RxdEFFSFNDRzRrQUFHVFZ6UzcrUiswVE9JSEwvRnJqUUFBQUFCSlJVNUVya0pnZ2c9PSIsInNpemVzIjogIjE5MngxOTIiLCJ0eXBlIjogImltYWdlL3BuZyJ9XQp9">
+<title>Samen</title>
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest: #2d5a27; --forest2: #1e3d1a; --moss: #4a7c42; --sage: #7aab70;
+  --mint: #b8d9b2; --cream: #f5f2eb; --paper: #faf8f3; --warm: #e8e2d4;
+  --text: #1e2a1a; --text2: #4a5a44; --text3: #8a9a84;
+  --red: #c0392b; --amber: #d4860a; --card: #ffffff;
+  --shadow: 0 2px 14px rgba(45,90,39,0.10); --radius: 16px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; }
+#app { max-width: 430px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; }
+
+/* HEADER */
+.header { background: var(--forest); padding: 14px 16px 0; position: sticky; top: 0; z-index: 100; }
+.header-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.header-title { font-family: 'Lora', serif; font-size: 21px; font-weight: 700; color: #fff; flex: 1; }
+.hbtn { background: rgba(255,255,255,0.15); border: none; border-radius: 10px; padding: 7px 10px; font-size: 17px; cursor: pointer; color: white; }
+
+/* SEARCH BAR */
+.search-bar { background: rgba(255,255,255,0.13); border-radius: 11px; display: flex; align-items: center; gap: 8px; padding: 9px 13px; margin-bottom: 12px; }
+.search-bar input { background: none; border: none; outline: none; color: white; font-size: 14px; font-family: 'DM Sans', sans-serif; flex: 1; }
+.search-bar input::placeholder { color: rgba(255,255,255,0.45); }
+
+/* MAIN TABS */
+.tabs { display: flex; }
+
+
+/* SUB TABS (Katalog: Überkategorien) */
+.subtabs { background: var(--forest2); padding: 0 16px; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 99; }
+.subtabs::-webkit-scrollbar { display: none; }
+.subtab { padding: 8px 14px; border: none; background: none; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5); cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; font-family: 'DM Sans', sans-serif; flex-shrink: 0; }
+.subtab.active { color: var(--mint); border-bottom-color: var(--mint); }
+
+/* SUB-SUB TABS (Unterkategorien) */
+.subsubtabs { background: var(--paper); padding: 8px 16px; display: flex; flex-wrap: wrap; gap: 6px; border-bottom: 1px solid var(--warm); }
+.subsubtabs::-webkit-scrollbar { display: none; }
+.subsubtab { padding: 5px 12px; border-radius: 20px; border: 1.5px solid var(--warm); background: white; font-size: 12px; font-weight: 600; color: var(--text2); cursor: pointer; white-space: nowrap; flex-shrink: 0; }
+.subsubtab.active { background: var(--forest); color: white; border-color: var(--forest); }
+
+/* MAIN CONTENT */
+#mainContent { flex: 1; overflow-y: auto; padding-bottom: 110px; }
+.content-pad { padding: 14px 16px; }
+
+/* SAMEN CARD */
+.samen-card { background: var(--card); border-radius: 14px; padding: 13px; margin-bottom: 8px; box-shadow: var(--shadow); border-left: 4px solid var(--sage); }
+.samen-card.warn { border-left-color: var(--amber); }
+.samen-card.expired { border-left-color: var(--red); }
+.samen-top { display: flex; align-items: flex-start; gap: 10px; }
+.samen-emoji { font-size: 28px; flex-shrink: 0; line-height: 1; }
+.samen-info { flex: 1; min-width: 0; }
+.samen-name { font-family: 'Lora', serif; font-size: 15px; font-weight: 600; color: var(--text); }
+.samen-sub { font-size: 12px; color: var(--text3); margin-top: 2px; }
+.samen-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.tag { font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 500; }
+.tag-amber { background: #fef3e2; color: var(--amber); }
+.tag-red { background: #fde8e8; color: var(--red); }
+
+/* FÜLLSTAND */
+.fuell-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.fuell-bar-wrap { flex: 1; height: 6px; background: var(--warm); border-radius: 3px; overflow: hidden; }
+.fuell-fill { height: 100%; border-radius: 3px; }
+.fuell-high { background: linear-gradient(90deg, var(--sage), var(--moss)); }
+.fuell-mid { background: linear-gradient(90deg, #c8a830, var(--amber)); }
+.fuell-low { background: linear-gradient(90deg, #e07050, var(--red)); }
+.fuell-pct { font-size: 13px; font-weight: 700; min-width: 36px; text-align: right; }
+.fuell-btn { background: var(--warm); border: none; border-radius: 8px; padding: 4px 10px; font-size: 12px; cursor: pointer; color: var(--text2); font-weight: 600; }
+
+/* CARD FOOTER */
+.card-footer { display: flex; gap: 6px; margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--warm); }
+.cfbtn { flex: 1; padding: 7px; border-radius: 10px; border: 1.5px solid var(--warm); background: none; font-size: 12px; font-weight: 600; color: var(--text2); cursor: pointer; }
+.cfbtn.primary { background: var(--forest); color: white; border-color: var(--forest); }
+
+/* FAB */
+.fab { position: fixed; bottom: 22px; right: 20px; width: 56px; height: 56px; border-radius: 50%; background: var(--forest); color: white; font-size: 26px; border: none; box-shadow: 0 4px 20px rgba(45,90,39,0.4); cursor: pointer; z-index: 200; display: flex; align-items: center; justify-content: center; }
+
+/* OVERLAY / SHEET */
+.overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 500; align-items: flex-end; pointer-events: none; }
+.overlay.open { display: flex; pointer-events: all; }
+.sheet { background: var(--paper); border-radius: 24px 24px 0 0; padding: 20px 20px 32px; width: 100%; max-height: 92vh; overflow-y: auto; animation: sheetUp .22s ease; }
+@keyframes sheetUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+.sheet-handle { width: 38px; height: 4px; background: var(--warm); border-radius: 2px; margin: 0 auto 16px; }
+.sheet-title { font-family: 'Lora', serif; font-size: 19px; font-weight: 700; margin-bottom: 16px; color: var(--forest2); }
+
+/* FORM */
+.fg { margin-bottom: 13px; }
+.fl { font-size: 11px; font-weight: 600; color: var(--text2); margin-bottom: 5px; display: block; text-transform: uppercase; letter-spacing: 0.3px; }
+.fi { width: 100%; padding: 11px 13px; border-radius: 11px; border: 1.5px solid var(--warm); background: white; font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--text); outline: none; }
+.fi:focus { border-color: var(--moss); }
+select.fi { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a5a44' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; padding-right: 34px; }
+textarea.fi { resize: none; }
+
+/* MARKE CHIPS */
+.marke-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.marke-chip { padding: 5px 12px; border-radius: 20px; border: 1.5px solid var(--warm); background: white; font-size: 13px; font-weight: 500; cursor: pointer; color: var(--text2); }
+.marke-chip.sel { background: var(--forest); color: white; border-color: var(--forest); }
+
+/* SLIDER */
+.slider { width: 100%; -webkit-appearance: none; height: 6px; border-radius: 3px; background: var(--warm); outline: none; }
+.slider::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--forest); cursor: pointer; box-shadow: 0 2px 6px rgba(45,90,39,0.3); }
+.slider-val { text-align: center; font-size: 18px; font-weight: 700; color: var(--forest); margin-top: 5px; }
+
+/* MONTH PILLS */
+.mpills { display: flex; flex-wrap: wrap; gap: 5px; }
+.mpill { width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--warm); background: white; font-size: 11px; font-weight: 600; color: var(--text2); cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.mpill.on { background: var(--forest); color: white; border-color: var(--forest); }
+.mpill.on-light { background: var(--mint); color: var(--forest2); border-color: var(--sage); }
+
+/* BUTTONS */
+.btn { padding: 12px; border-radius: 12px; border: none; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 15px; cursor: pointer; width: 100%; margin-bottom: 8px; }
+.btn-p { background: var(--forest); color: white; }
+.btn-s { background: var(--warm); color: var(--text); }
+.btn-d { background: #fde8e8; color: var(--red); }
+
+/* KALENDER */
+.kal-wrap { overflow-x: auto; }
+.kal-table { min-width: 520px; width: 100%; border-collapse: collapse; }
+.kal-table th { font-size: 10px; font-weight: 700; color: var(--text3); padding: 4px 2px; text-align: center; }
+.kal-table th.kname { text-align: left; min-width: 100px; font-size: 11px; color: var(--text2); }
+.kal-table td { padding: 2px; }
+.kal-table td.kname { font-size: 12px; padding-right: 8px; white-space: nowrap; max-width: 100px; overflow: hidden; text-overflow: ellipsis; }
+.kcell { height: 16px; border-radius: 3px; width: 100%; }
+.kv { background: #a8d4a8; } .kd { background: var(--forest); } .ke { background: #d4a800; } .kn { background: rgba(45,90,39,0.1); }
+.kal-now-col { background: rgba(45,90,39,0.05); }
+.kal-leg { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.kal-leg span { display: flex; align-items: center; gap: 4px; font-size: 11px; color: var(--text2); }
+.kal-dot { width: 11px; height: 11px; border-radius: 2px; }
+
+/* JETZT CARD */
+.jetzt-card { border-radius: 16px; padding: 14px; margin-bottom: 12px; color: white; }
+.jetzt-card-title { font-family: 'Lora', serif; font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+.jetzt-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.jetzt-chip { background: rgba(255,255,255,0.2); border-radius: 20px; padding: 4px 11px; font-size: 12px; font-weight: 500; }
+
+/* SHOP */
+.shop-row { display: flex; align-items: center; gap: 10px; padding: 12px 14px; background: white; border-radius: 12px; margin-bottom: 6px; box-shadow: var(--shadow); }
+.shop-pct { font-size: 13px; font-weight: 700; color: var(--red); }
+
+/* WARN BANNER */
+.warn-box { border-radius: 12px; padding: 10px 13px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; }
+.warn-box.red { background: #fde8e8; color: var(--red); }
+.warn-box.amber { background: #fef3e2; color: var(--amber); }
+
+/* EMPTY */
+.empty { text-align: center; padding: 48px 20px; color: var(--text3); }
+.empty-icon { font-size: 44px; margin-bottom: 10px; }
+.empty-text { font-family: 'Lora', serif; font-style: italic; font-size: 15px; }
+
+/* TOAST */
+.toast { position: fixed; bottom: 88px; left: 50%; transform: translateX(-50%) translateY(40px); background: var(--forest2); color: white; padding: 10px 20px; border-radius: 20px; font-size: 14px; font-weight: 600; z-index: 9999; opacity: 0; transition: all .3s; pointer-events: none; white-space: nowrap; }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.sec-label { font-size: 11px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.5px; margin: 14px 0 6px; padding: 0 16px; }
+.divider { height: 1px; background: var(--warm); margin: 4px 0; }
+
+/* BOTTOM NAV */
+.bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; background: var(--forest2); display: flex; z-index: 300; padding-bottom: env(safe-area-inset-bottom, 0px); border-top: 1px solid rgba(255,255,255,0.1); }
+.bnav-btn { flex: 1; padding: 10px 4px 12px; border: none; background: none; color: rgba(255,255,255,0.5); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; font-family: 'DM Sans', sans-serif; }
+.bnav-btn.active { color: var(--mint); }
+.bnav-icon { font-size: 22px; line-height: 1; }
+.bnav-label { font-size: 10px; font-weight: 600; letter-spacing: 0.2px; }
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="header" id="header">
+    <div class="header-top">
+      <span style="font-size:24px">🌱</span>
+      <span class="header-title">Meine Samen</span>
+      <button class="hbtn" id="searchToggle" onclick="toggleSearch()">🔍</button>
+      <button class="hbtn" onclick="openKatSheet()">⚙️</button>
+    </div>
+    <div class="search-bar" id="searchBar" style="display:none">
+      <span style="font-size:14px;opacity:.6">🔍</span>
+      <input type="text" id="searchInput" placeholder="Name, Sorte, Marke..." oninput="onSearch(this.value)">
+      <button style="background:none;border:none;color:rgba(255,255,255,.7);font-size:17px;cursor:pointer" onclick="closeSearch()">✕</button>
+    </div>
+
+  </div>
+  <div id="subNav"></div>
+  <div id="mainContent"></div>
+  <button class="fab" id="fab" onclick="fabAction()">＋</button>
+</div>
+
+<!-- SAMEN SHEET -->
+<div class="overlay" id="samenSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title" id="sSheetTitle">Samen hinzufügen</div>
+    <div class="fg">
+      <label class="fl">Symbol</label>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px">
+        <span style="font-size:26px;cursor:pointer" onclick="S._editEmoji='🌱';document.getElementById('pickedEmoji').textContent='🌱'">🌱</span>
+        <span style="font-size:26px;cursor:pointer" onclick="S._editEmoji='🥕';document.getElementById('pickedEmoji').textContent='🥕'">🥕</span>
+        <span style="font-size:26px;cursor:pointer" onclick="S._editEmoji='🍅';document.getElementById('pickedEmoji').textContent='🍅'">🍅</span>
+        <span style="font-size:26px;cursor:pointer" onclick="S._editEmoji='🌿';document.getElementById('pickedEmoji').textContent='🌿'">🌿</span>
+        <span style="font-size:26px;cursor:pointer" onclick="S._editEmoji='🥦';document.getElementById('pickedEmoji').textContent='🥦'">🥦</span>
+        <span style="font-size:26px;cursor:pointer" onclick="S._editEmoji='🌻';document.getElementById('pickedEmoji').textContent='🌻'">🌻</span>
+        <span style="font-size:26px;cursor:pointer" onclick="S._editEmoji='🌸';document.getElementById('pickedEmoji').textContent='🌸'">🌸</span>
+        <span style="font-size:26px;cursor:pointer" onclick="S._editEmoji='🫛';document.getElementById('pickedEmoji').textContent='🫛'">🫛</span>
+        <span style="font-size:26px;cursor:pointer" onclick="S._editEmoji='🥬';document.getElementById('pickedEmoji').textContent='🥬'">🥬</span>
+        <span style="font-size:26px;cursor:pointer" onclick="S._editEmoji='🌶️';document.getElementById('pickedEmoji').textContent='🌶️'">🌶️</span>
+        <span style="font-size:26px;cursor:pointer" onclick="S._editEmoji='🎃';document.getElementById('pickedEmoji').textContent='🎃'">🎃</span>
+        <span style="font-size:26px;cursor:pointer" onclick="S._editEmoji='🍓';document.getElementById('pickedEmoji').textContent='🍓'">🍓</span>
+        <span style="font-size:26px;cursor:pointer" onclick="S._editEmoji='🌼';document.getElementById('pickedEmoji').textContent='🌼'">🌼</span>
+        <span style="font-size:26px;cursor:pointer" onclick="S._editEmoji='🫚';document.getElementById('pickedEmoji').textContent='🫚'">🫚</span>
+      </div>
+      <span id="pickedEmoji" style="font-size:30px">🌱</span>
+    </div>
+    <div class="fg"><label class="fl">Name *</label><input class="fi" id="sName" placeholder="z.B. Tomate, Basilikum..."></div>
+    <div class="fg"><label class="fl">Sorte</label><input class="fi" id="sSorte" placeholder="z.B. Cherry, Genovese..."></div>
+    <div class="fg">
+      <label class="fl">Marke</label>
+      <div class="marke-chips" id="markeChips"></div>
+      <input class="fi" id="sMarkeCustom" placeholder="Andere Marke eingeben...">
+    </div>
+    <div class="fg">
+      <label class="fl">Überkategorie</label>
+      <select class="fi" id="sKat" onchange="onKatChange()">
+        <option value="">– wählen –</option>
+      </select>
+    </div>
+    <div class="fg">
+      <label class="fl">Unterkategorie</label>
+      <select class="fi" id="sSubkat">
+        <option value="">– wählen –</option>
+      </select>
+    </div>
+    <div class="fg"><label class="fl">MHD</label><input class="fi" id="sMhd" type="date"></div>
+    <div class="fg">
+      <label class="fl">Füllstand</label>
+      <input type="range" class="slider" id="sFuell" min="0" max="100" value="100" oninput="document.getElementById('sFuellV').textContent=this.value+'%'">
+      <div class="slider-val" id="sFuellV">100%</div>
+    </div>
+    <div class="fg"><label class="fl">Notiz</label><textarea class="fi" id="sNotiz" rows="3" placeholder="Erfahrungen, Tipps..."></textarea></div>
+
+    <div style="margin-bottom:6px;font-size:12px;font-weight:700;color:var(--forest2);text-transform:uppercase;letter-spacing:.3px;margin-top:4px">🗓 Aussaatkalender</div>
+    <div class="fg"><label class="fl">Voranzucht (Monate)</label><div class="mpills" id="pillsV"></div></div>
+    <div class="fg"><label class="fl">Direktsaat / Auspflanzen</label><div class="mpills" id="pillsD"></div></div>
+    <div class="fg"><label class="fl">Erntezeit</label><div class="mpills" id="pillsE"></div></div>
+
+    <div style="height:16px"></div>
+    <button class="btn btn-p" onclick="saveSamen()">Speichern</button>
+    <button class="btn btn-s" onclick="closeSheet('samenSheet')">Abbrechen</button>
+    <button class="btn btn-d" id="sDelBtn" onclick="deleteSamen()" style="display:none">🗑 Samen löschen</button>
+  </div>
+</div>
+
+<!-- KATEGORIE SHEET -->
+<div class="overlay" id="katSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">Kategorien</div>
+    <div id="katListEl"></div>
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--warm)">
+      <div style="font-size:12px;font-weight:700;color:var(--text2);margin-bottom:8px">Neue Überkategorie</div>
+      <div style="display:flex;gap:8px">
+        <input class="fi" id="newKatEmoji" style="width:54px;text-align:center" placeholder="🌿">
+        <input class="fi" id="newKatName" placeholder="Name..." style="flex:1">
+        <button class="btn btn-p" style="width:auto;padding:11px 14px;margin:0" onclick="addKat()">＋</button>
+      </div>
+    </div>
+    <div style="height:14px"></div>
+    <button class="btn btn-s" onclick="closeSheet('katSheet')">Schließen</button>
+  </div>
+</div>
+
+<!-- MANUEL KALENDER SHEET -->
+<div class="overlay" id="manKalSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">Eintrag manuell hinzufügen</div>
+    <div class="fg"><label class="fl">Name</label><input class="fi" id="mkName" placeholder="z.B. Feldsalat"></div>
+    <div class="fg"><label class="fl">Symbol</label>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <span style="font-size:24px;cursor:pointer" onclick="S._mkEmoji='🌱';document.getElementById('mkEmoji').textContent='🌱'">🌱</span>
+        <span style="font-size:24px;cursor:pointer" onclick="S._mkEmoji='🥕';document.getElementById('mkEmoji').textContent='🥕'">🥕</span>
+        <span style="font-size:24px;cursor:pointer" onclick="S._mkEmoji='🍅';document.getElementById('mkEmoji').textContent='🍅'">🍅</span>
+        <span style="font-size:24px;cursor:pointer" onclick="S._mkEmoji='🌿';document.getElementById('mkEmoji').textContent='🌿'">🌿</span>
+        <span style="font-size:24px;cursor:pointer" onclick="S._mkEmoji='🥦';document.getElementById('mkEmoji').textContent='🥦'">🥦</span>
+        <span style="font-size:24px;cursor:pointer" onclick="S._mkEmoji='🌸';document.getElementById('mkEmoji').textContent='🌸'">🌸</span>
+        <span style="font-size:24px;cursor:pointer" onclick="S._mkEmoji='🌻';document.getElementById('mkEmoji').textContent='🌻'">🌻</span>
+      </div>
+      <span id="mkEmoji" style="font-size:28px;margin-top:4px;display:block">🌱</span>
+    </div>
+    <div class="fg"><label class="fl">Voranzucht</label><div class="mpills" id="mkPillsV"></div></div>
+    <div class="fg"><label class="fl">Direktsaat / Auspflanzen</label><div class="mpills" id="mkPillsD"></div></div>
+    <div class="fg"><label class="fl">Erntezeit</label><div class="mpills" id="mkPillsE"></div></div>
+    <div style="height:14px"></div>
+    <button class="btn btn-p" onclick="saveManKal()">Speichern</button>
+    <button class="btn btn-s" onclick="closeSheet('manKalSheet')">Abbrechen</button>
+    <button class="btn btn-d" id="mkDelBtn" onclick="deleteManKal()" style="display:none">🗑 Löschen</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const MONTHS = ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+const NOW_M = new Date().getMonth();
+const MARKEN = ['Dehner','Deine Gartenwelt','Dürr','Flortus','Gardenline','Kiepenkerl','Quedlinburger','Sperli'];
+
+let S = {
+  tab: 'katalog',
+  activeKat: null,   // id of active Überkategorie in Katalog
+  activeSub: null,   // name of active Unterkategorie
+  searchQ: '',
+  searchOpen: false,
+  cats: [
+    { id: 'gem', name: 'Gemüse', emoji: '🥦', subs: ['Tomaten & Paprika','Kohl','Erbsen & Bohnen','Möhren','Radieschen','Mangold','Kürbis & Zucchini','Sonstiges'] },
+    { id: 'kra', name: 'Kräuter', emoji: '🌿', subs: [] },
+    { id: 'blu', name: 'Blumen', emoji: '🌸', subs: [] },
+  ],
+  samen: [],
+  manKal: [],   // manually added calendar entries
+  // edit state
+  _editId: null,
+  _editEmoji: '🌱',
+  _va: [], _vd: [], _ve: [],
+  _mkEditId: null,
+  _mkEmoji: '🌱',
+  _mkV: [], _mkD: [], _mkE: [],
+  _selMarke: '',
+};
+
+function uid() { return Date.now().toString(36)+Math.random().toString(36).slice(2,5); }
+function load() {
+  try {
+    const d = JSON.parse(localStorage.getItem('samenapp_v2')||'{}');
+    if(d.cats) S.cats=d.cats;
+    if(d.samen) S.samen=d.samen;
+    if(d.manKal) S.manKal=d.manKal;
+  } catch(e){}
+}
+function save() {
+  localStorage.setItem('samenapp_v2', JSON.stringify({cats:S.cats,samen:S.samen,manKal:S.manKal}));
+}
+
+// ===== NAVIGATION =====
+function switchTab(t) {
+  S.tab = t;
+  if(t==='katalog') { if(!S.activeKat && S.cats.length) S.activeKat=S.cats[0].id; }
+  document.querySelectorAll('.bnav-btn').forEach(el=>el.classList.remove('active'));
+  const active = document.getElementById('bnav-'+t);
+  if(active) active.classList.add('active');
+  renderAll();
+}
+
+function setActiveKat(id) {
+  S.activeKat = id;
+  S.activeSub = 'alle';
+  renderAll();
+}
+
+function setActiveSub(sub) {
+  S.activeSub = sub;
+  renderAll();
+}
+
+function renderAll() {
+  renderSubNav();
+  renderFab();
+  if(S.tab==='katalog') renderKatalog();
+  else if(S.tab==='kalender') renderKalender();
+  else if(S.tab==='jetzt') renderJetzt();
+  else renderShop();
+}
+
+function renderFab() {
+  const fab = document.getElementById('fab');
+  if(S.tab==='katalog'||S.tab==='kalender') { fab.style.display='flex'; fab.textContent='＋'; }
+  else fab.style.display='none';
+}
+
+function fabAction() {
+  if(S.tab==='katalog') openSamenSheet();
+  else if(S.tab==='kalender') openManKalSheet();
+}
+
+// ===== SUB NAV =====
+function renderSubNav() {
+  const el = document.getElementById('subNav');
+  if(S.tab !== 'katalog') { el.innerHTML=''; return; }
+
+  // Ensure activeKat is set
+  if(!S.activeKat && S.cats.length) S.activeKat=S.cats[0].id;
+  if(!S.activeSub) S.activeSub='alle';
+
+  const kat = S.cats.find(c=>c.id===S.activeKat);
+
+  // Überkategorie tabs
+  let html = `<div class="subtabs">`;
+  S.cats.forEach(c => {
+    html += `<button class="subtab${c.id===S.activeKat?' active':''}" onclick="setActiveKat('${c.id}')">${c.emoji} ${c.name}</button>`;
+  });
+  html += `</div>`;
+
+  // Unterkategorie tabs
+  if(kat) {
+    html += `<div class="subsubtabs">`;
+    html += `<button class="subsubtab${'alle'===S.activeSub?' active':''}" onclick="setActiveSub('alle')">Alle</button>`;
+    kat.subs.forEach(sub => {
+      const cnt = S.samen.filter(s=>s.katId===S.activeKat&&s.subKat===sub).length;
+      html += `<button class="subsubtab${sub===S.activeSub?' active':''}" onclick="setActiveSub('${sub}')">${sub}${cnt?' ('+cnt+')':''}</button>`;
+    });
+    html += `</div>`;
+  }
+
+  el.innerHTML = html;
+}
+
+// ===== KATALOG =====
+function renderKatalog() {
+  const mc = document.getElementById('mainContent');
+  const q = S.searchQ;
+  let html = '<div class="content-pad">';
+
+  // Warn banners
+  const expired = S.samen.filter(s=>mhdSt(s.mhd)==='exp').length;
+  const warned = S.samen.filter(s=>mhdSt(s.mhd)==='warn').length;
+  if(expired) html += `<div class="warn-box red">🔴 ${expired} Samen abgelaufen!</div>`;
+  if(warned) html += `<div class="warn-box amber">🟡 ${warned} Samen bald ablaufend</div>`;
+
+  // Search results
+  if(q) {
+    const res = S.samen.filter(s=>
+      s.name.toLowerCase().includes(q)||(s.sorte||'').toLowerCase().includes(q)||(s.marke||'').toLowerCase().includes(q)
+    );
+    if(res.length===0) { html+=`<div class="empty"><div class="empty-icon">🔍</div><div class="empty-text">Nichts gefunden</div></div>`; }
+    else res.forEach(s=>{ html+=renderCard(s); });
+    mc.innerHTML = html+'</div>'; return;
+  }
+
+  const kat = S.cats.find(c=>c.id===S.activeKat);
+  if(!kat) { mc.innerHTML=html+'<div class="empty"><div class="empty-icon">🌱</div><div class="empty-text">Keine Kategorien vorhanden</div></div></div>'; return; }
+
+  let pool = S.samen.filter(s=>s.katId===S.activeKat);
+  if(S.activeSub && S.activeSub!=='alle') pool = pool.filter(s=>s.subKat===S.activeSub);
+  pool = pool.sort((a,b)=>a.name.localeCompare(b.name));
+
+  if(pool.length===0) {
+    html += `<div class="empty"><div class="empty-icon">🌱</div><div class="empty-text">Noch keine Samen hier.<br>Tippe ＋ um welche hinzuzufügen!</div></div>`;
+  } else {
+    pool.forEach(s=>{ html+=renderCard(s); });
+  }
+
+  mc.innerHTML = html+'</div>';
+}
+
+function renderCard(s) {
+  const st = mhdSt(s.mhd);
+  let cls = 'samen-card';
+  if(st==='exp') cls+=' expired'; else if(st==='warn') cls+=' warn';
+  const fp = s.fuell??100;
+  const fc = fp>=50?'fuell-high':fp>=20?'fuell-mid':'fuell-low';
+  const sub = [s.sorte, s.marke, s.mhd?'MHD '+fmt(s.mhd):''].filter(Boolean).join(' · ');
+  let tags='';
+  if(st==='exp') tags+=`<span class="tag tag-red">⚠ Abgelaufen</span>`;
+  else if(st==='warn') tags+=`<span class="tag tag-amber">⏰ Bald ablaufend</span>`;
+  if(fp<=20&&fp>0) tags+=`<span class="tag tag-amber">📉 Fast leer</span>`;
+  return `<div class="${cls}">
+    <div class="samen-top">
+      <span class="samen-emoji">${s.emoji||'🌱'}</span>
+      <div class="samen-info">
+        <div class="samen-name">${s.name}</div>
+        ${sub?`<div class="samen-sub">${sub}</div>`:''}
+        ${tags?`<div class="samen-tags">${tags}</div>`:''}
+        ${s.notiz?`<div style="font-size:12px;color:var(--text3);margin-top:5px;font-style:italic">📝 ${s.notiz}</div>`:''}
+      </div>
+    </div>
+    <div class="fuell-row">
+      <div class="fuell-bar-wrap"><div class="fuell-fill ${fc}" style="width:${fp}%"></div></div>
+      <span class="fuell-pct" style="color:${fp<=20?'var(--red)':fp<=50?'var(--amber)':'var(--forest)'}">${fp}%</span>
+      <button class="fuell-btn" data-action="fuell" data-id="${s.id}">±</button>
+    </div>
+    <div class="card-footer">
+      <button class="cfbtn primary" data-action="edit" data-id="${s.id}">✏️ Bearbeiten</button>
+    </div>
+  </div>`;
+}
+
+function mhdSt(mhd) {
+  if(!mhd) return 'ok';
+  const diff=(new Date(mhd)-new Date())/(1000*60*60*24);
+  if(diff<0) return 'exp'; if(diff<90) return 'warn'; return 'ok';
+}
+function fmt(d) { if(!d) return ''; const p=d.split('-'); return `${p[2]}.${p[1]}.${p[0]}`; }
+
+// ===== KALENDER =====
+function renderKalender() {
+  const mc = document.getElementById('mainContent');
+  const all = [
+    ...S.samen.filter(s=>(s.va&&s.va.length)||(s.vd&&s.vd.length)||(s.ve&&s.ve.length)),
+    ...S.manKal
+  ];
+  if(all.length===0) {
+    mc.innerHTML=`<div class="content-pad"><div class="empty"><div class="empty-icon">🗓</div><div class="empty-text">Noch keine Kalendereinträge.<br>Tippe ＋ für manuelle Einträge!</div></div></div>`;
+    return;
+  }
+
+  // Filter tabs
+  const filter = S.kalFilter || 'alle';
+  let html = `<div style="background:var(--paper);padding:8px 16px;display:flex;flex-wrap:wrap;gap:5px;border-bottom:1px solid var(--warm)">`;
+  [['alle','Alle'],['va','Voranzucht'],['vd','Direktsaat'],['ve','Ernte']].forEach(([k,l])=>{
+    html+=`<button class="subsubtab${filter===k?' active':''}" onclick="setKalFilter('${k}')">${l}</button>`;
+  });
+  html+=`</div>`;
+
+  html+=`<div class="content-pad"><div class="kal-wrap"><table class="kal-table"><thead><tr><th class="kname">Pflanze</th>`;
+  MONTHS.forEach((m,i)=>{ html+=`<th${i===NOW_M?' style="color:var(--forest);font-weight:800"':''}>${m}</th>`; });
+  html+=`</tr></thead><tbody>`;
+
+  // Group by type when filter is 'alle', show labeled sections
+  const sections = filter === 'alle'
+    ? [['va','🌡 Voranzucht'],['vd','🌿 Direktsaat / Auspflanzen'],['ve','🌾 Ernte']]
+    : [[filter, '']];
+
+  sections.forEach(([type, label]) => {
+    const rows = all.filter(s => (s[type]||[]).length > 0);
+    if(rows.length === 0) return;
+    if(label) {
+      html+=`<tr><td colspan="13" style="padding:10px 0 4px;font-size:12px;font-weight:700;color:var(--forest2);font-family:'Lora',serif">${label}</td></tr>`;
+    }
+    rows.forEach(s=>{
+      html+=`<tr><td class="kname" title="${s.name}">${s.emoji||'🌱'} ${s.name}</td>`;
+      for(let m=0;m<12;m++){
+        const on=(s[type]||[]).includes(m);
+        const now=m===NOW_M;
+        const cellClass = type==='va'?'kv':type==='vd'?'kd':'ke';
+        html+=`<td${now?' class="kal-now-col"':''}>${on?`<div class="kcell ${cellClass}"></div>`:now?`<div class="kcell kn"></div>`:''}</td>`;
+      }
+      html+=`</tr>`;
+    });
+  });
+
+  html+=`</tbody></table></div>
+  <div class="kal-leg">
+    <span><div class="kal-dot kv"></div>Voranzucht</span>
+    <span><div class="kal-dot kd"></div>Direktsaat</span>
+    <span><div class="kal-dot ke"></div>Ernte</span>
+  </div></div>`;
+  mc.innerHTML=html;
+}
+
+function setKalFilter(f) { S.kalFilter=f; renderKalender(); }
+
+// ===== JETZT =====
+function renderJetzt() {
+  const mc = document.getElementById('mainContent');
+  const m=NOW_M;
+  const all=[...S.samen,...S.manKal];
+  const va=all.filter(s=>(s.va||[]).includes(m));
+  const vd=all.filter(s=>(s.vd||[]).includes(m));
+  const ve=all.filter(s=>(s.ve||[]).includes(m));
+  if(!va.length&&!vd.length&&!ve.length){
+    mc.innerHTML=`<div class="content-pad"><div class="empty"><div class="empty-icon">😴</div><div class="empty-text">Für ${MONTHS[m]} gibt es nichts!</div></div></div>`;
+    return;
+  }
+  let html='<div class="content-pad">';
+  html+=`<div style="font-family:'Lora',serif;font-size:17px;font-weight:600;color:var(--forest2);margin-bottom:14px">Was ist im ${MONTHS[m]} dran?</div>`;
+  if(va.length) html+=`<div class="jetzt-card" style="background:linear-gradient(135deg,#3a6b35,#5a9b50)"><div class="jetzt-card-title">🌡 Voranzucht</div><div class="jetzt-chips">${va.map(s=>`<span class="jetzt-chip">${s.emoji||'🌱'} ${s.name}</span>`).join('')}</div></div>`;
+  if(vd.length) html+=`<div class="jetzt-card" style="background:linear-gradient(135deg,#2d5a27,#4a7c42)"><div class="jetzt-card-title">🌿 Direktsaat / Auspflanzen</div><div class="jetzt-chips">${vd.map(s=>`<span class="jetzt-chip">${s.emoji||'🌱'} ${s.name}</span>`).join('')}</div></div>`;
+  if(ve.length) html+=`<div class="jetzt-card" style="background:linear-gradient(135deg,#7a6a10,#c8a820)"><div class="jetzt-card-title">🌾 Erntezeit</div><div class="jetzt-chips">${ve.map(s=>`<span class="jetzt-chip">${s.emoji||'🌱'} ${s.name}</span>`).join('')}</div></div>`;
+  mc.innerHTML=html+'</div>';
+}
+
+// ===== EINKAUF =====
+function renderShop() {
+  const mc = document.getElementById('mainContent');
+  const low=S.samen.filter(s=>(s.fuell??100)<=20).sort((a,b)=>(a.fuell??100)-(b.fuell??100));
+  if(!low.length){
+    mc.innerHTML=`<div class="content-pad"><div class="empty"><div class="empty-icon">✅</div><div class="empty-text">Alle Samen ausreichend vorhanden!</div></div></div>`;
+    return;
+  }
+  let html='<div class="content-pad">';
+  html+=`<div class="sec-label" style="padding:0;margin:0 0 8px">${low.length} Samen nachkaufen</div>`;
+  low.forEach(s=>{
+    html+=`<div class="shop-row"><span style="font-size:22px">${s.emoji||'🌱'}</span>
+      <div style="flex:1"><div style="font-weight:600">${s.name}</div>${s.sorte||s.marke?`<div style="font-size:12px;color:var(--text3)">${[s.sorte,s.marke].filter(Boolean).join(' · ')}</div>`:''}</div>
+      <span class="shop-pct">${s.fuell??100}%</span></div>`;
+  });
+  mc.innerHTML=html+'</div>';
+}
+
+// ===== SAMEN SHEET =====
+function openSamenSheet(id) {
+  S._editId=id||null;
+  const s=id?S.samen.find(x=>x.id===id):null;
+  S._editEmoji=s?s.emoji:'🌱';
+  S._va=s&&s.va?[...s.va]:[];
+  S._vd=s&&s.vd?[...s.vd]:[];
+  S._ve=s&&s.ve?[...s.ve]:[];
+  S._selMarke=s?s.marke||'':'';
+
+  document.getElementById('sSheetTitle').textContent=s?'Samen bearbeiten':'Samen hinzufügen';
+  document.getElementById('pickedEmoji').textContent=S._editEmoji;
+  document.getElementById('sName').value=s?s.name:'';
+  document.getElementById('sSorte').value=s?s.sorte||'':'';
+  document.getElementById('sMarkeCustom').value=MARKEN.includes(s?.marke)?'':(s?.marke||'');
+  document.getElementById('sMhd').value=s?s.mhd||'':'';
+  document.getElementById('sFuell').value=s?s.fuell??100:100;
+  document.getElementById('sFuellV').textContent=(s?s.fuell??100:100)+'%';
+  document.getElementById('sNotiz').value=s?s.notiz||'':'';
+  document.getElementById('sDelBtn').style.display=s?'block':'none';
+
+  // Marke chips
+  renderMarkeChips();
+
+  // Kat selects — preselect active kat/sub for new samen
+  const preKat = s ? s.katId : (S.activeKat || '');
+  const preSub = s ? s.subKat : (S.activeSub && S.activeSub !== 'alle' ? S.activeSub : '');
+  const ks=document.getElementById('sKat');
+  ks.innerHTML='<option value="">– wählen –</option>'+S.cats.map(c=>`<option value="${c.id}"${preKat===c.id?' selected':''}>${c.emoji} ${c.name}</option>`).join('');
+  populateSubkat(preSub);
+
+  // Month pills
+  renderSPills();
+  openSheet('samenSheet');
+}
+
+function renderMarkeChips() {
+  const el=document.getElementById('markeChips');
+  el.innerHTML=MARKEN.map(m=>`<button class="marke-chip${S._selMarke===m?' sel':''}" onclick="selectMarke('${m}')">${m}</button>`).join('');
+}
+
+function populateSubkat(sel='') {
+  const katId=document.getElementById('sKat').value;
+  const kat=S.cats.find(c=>c.id===katId);
+  const el=document.getElementById('sSubkat');
+  el.innerHTML='<option value="">– wählen –</option>';
+  if(kat) kat.subs.forEach(sub=>{ el.innerHTML+=`<option value="${sub}"${sub===sel?' selected':''}>${sub}</option>`; });
+}
+
+function onKatChange() { populateSubkat(''); }
+
+function renderSPills() {
+  [['pillsV',S._va],['pillsD',S._vd],['pillsE',S._ve]].forEach(([id,arr])=>{
+    const el=document.getElementById(id);
+    if(!el) return;
+    el.innerHTML=MONTHS.map((m,i)=>{const on=arr.includes(i);return `<button class="mpill${on?' on':''}" onclick="toggleSpill('${id}',${i})">${m}</button>`;}).join('');
+  });
+}
+
+function saveSamen() {
+  const name=document.getElementById('sName').value.trim();
+  if(!name){showToast('❗ Bitte Namen eingeben');return;}
+  const customMarke=document.getElementById('sMarkeCustom').value.trim();
+  const marke=customMarke||(S._selMarke)||'';
+  const obj={
+    id:S._editId||uid(),
+    emoji:S._editEmoji, name,
+    sorte:document.getElementById('sSorte').value.trim(),
+    marke,
+    katId:document.getElementById('sKat').value,
+    subKat:document.getElementById('sSubkat').value,
+    mhd:document.getElementById('sMhd').value,
+    fuell:parseInt(document.getElementById('sFuell').value),
+    notiz:document.getElementById('sNotiz').value.trim(),
+    va:[...S._va], vd:[...S._vd], ve:[...S._ve],
+  };
+  if(S._editId){
+    const i=S.samen.findIndex(s=>s.id===S._editId);
+    S.samen[i]=obj;
+  } else { S.samen.push(obj); }
+  save(); closeSheet('samenSheet'); renderAll();
+  showToast(S._editId?'✅ Gespeichert':'✅ Samen hinzugefügt');
+}
+
+function deleteSamen() {
+  if(!S._editId) return;
+  if(!confirm('Samen wirklich löschen?')) return;
+  S.samen=S.samen.filter(s=>s.id!==S._editId);
+  save(); closeSheet('samenSheet'); renderAll();
+  showToast('🗑 Gelöscht');
+}
+
+// ===== MANUELLER KALENDER =====
+function openManKalSheet(id) {
+  S._mkEditId=id||null;
+  const e=id?S.manKal.find(x=>x.id===id):null;
+  S._mkEmoji=e?e.emoji:'🌱';
+  S._mkV=e&&e.va?[...e.va]:[];
+  S._mkD=e&&e.vd?[...e.vd]:[];
+  S._mkE=e&&e.ve?[...e.ve]:[];
+  document.getElementById('mkName').value=e?e.name:'';
+  document.getElementById('mkEmoji').textContent=S._mkEmoji;
+  document.getElementById('mkDelBtn').style.display=e?'block':'none';
+  renderMkPills();
+  openSheet('manKalSheet');
+}
+
+function renderMkPills() {
+  [['mkPillsV',S._mkV],['mkPillsD',S._mkD],['mkPillsE',S._mkE]].forEach(([id,arr])=>{
+    const el=document.getElementById(id);
+    if(!el) return;
+    el.innerHTML=MONTHS.map((m,i)=>{const on=arr.includes(i);return `<button class="mpill${on?' on':''}" onclick="toggleMkpill('${id}',${i})">${m}</button>`;}).join('');
+  });
+}
+
+function saveManKal() {
+  const name=document.getElementById('mkName').value.trim();
+  if(!name){showToast('❗ Bitte Namen eingeben');return;}
+  const obj={id:S._mkEditId||uid(),emoji:S._mkEmoji,name,va:[...S._mkV],vd:[...S._mkD],ve:[...S._mkE],manual:true};
+  if(S._mkEditId){const i=S.manKal.findIndex(x=>x.id===S._mkEditId);S.manKal[i]=obj;}
+  else S.manKal.push(obj);
+  save(); closeSheet('manKalSheet'); renderAll();
+  showToast('✅ Eintrag gespeichert');
+}
+
+function deleteManKal() {
+  if(!S._mkEditId) return;
+  if(!confirm('Eintrag löschen?')) return;
+  S.manKal=S.manKal.filter(x=>x.id!==S._mkEditId);
+  save(); closeSheet('manKalSheet'); renderAll();
+  showToast('🗑 Gelöscht');
+}
+
+// ===== KATEGORIE SHEET =====
+function openKatSheet() { renderKatEl(); openSheet('katSheet'); }
+function renderKatEl() {
+  const el=document.getElementById('katListEl');
+  el.innerHTML=S.cats.map((k,ki)=>`
+    <div style="margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--warm)">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <span style="font-size:20px">${k.emoji}</span>
+        <span style="font-weight:700;flex:1">${k.name}</span>
+        <button style="background:none;border:none;font-size:17px;cursor:pointer" onclick="delKat(${ki})">🗑</button>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px">
+        ${k.subs.map((sub,si)=>`<span style="background:var(--warm);border-radius:20px;padding:3px 10px;font-size:12px;display:inline-flex;align-items:center;gap:4px">${sub}<button style="background:none;border:none;font-size:11px;cursor:pointer;color:var(--text3)" onclick="delSub(${ki},${si})">✕</button></span>`).join('')}
+      </div>
+      <div style="display:flex;gap:6px">
+        <input class="fi" placeholder="Neue Unterkategorie..." id="ns_${ki}" style="flex:1;font-size:13px;padding:8px 11px">
+        <button class="btn btn-p" style="width:auto;padding:8px 13px;margin:0;font-size:13px" onclick="addSub(${ki})">＋</button>
+      </div>
+    </div>`).join('');
+}
+
+function addKat() {
+  const e=document.getElementById('newKatEmoji').value.trim()||'🌿';
+  const n=document.getElementById('newKatName').value.trim();
+  if(!n){showToast('❗ Bitte Namen');return;}
+  S.cats.push({id:uid(),name:n,emoji:e,subs:[]});
+  save(); renderKatEl(); renderAll();
+  document.getElementById('newKatName').value='';
+  document.getElementById('newKatEmoji').value='';
+  showToast('✅ Kategorie angelegt');
+}
+
+function addSub(ki) {
+  const v=document.getElementById('ns_'+ki).value.trim();
+  if(!v) return;
+  S.cats[ki].subs.push(v);
+  save(); renderKatEl(); renderAll();
+}
+
+function delSub(ki,si) { S.cats[ki].subs.splice(si,1); save(); renderKatEl(); renderAll(); }
+function delKat(ki) {
+  if(!confirm('Kategorie löschen?')) return;
+  const id=S.cats[ki].id;
+  S.cats.splice(ki,1);
+  if(S.activeKat===id) S.activeKat=S.cats[0]?.id||null;
+  save(); renderKatEl(); renderAll();
+}
+
+// ===== SHEET HELPERS =====
+function openSheet(id) { document.getElementById(id).classList.add('open'); }
+function closeSheet(id) { document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.overlay').forEach(o=>{
+  o.addEventListener('click',e=>{if(e.target===o) o.classList.remove('open');});
+});
+
+// ===== SEARCH =====
+function toggleSearch() {
+  S.searchOpen=!S.searchOpen;
+  const sb=document.getElementById('searchBar');
+  sb.style.display=S.searchOpen?'flex':'none';
+  if(S.searchOpen) setTimeout(()=>document.getElementById('searchInput').focus(),100);
+  else { document.getElementById('searchInput').value=''; S.searchQ=''; renderAll(); }
+}
+function closeSearch() {
+  S.searchOpen=false;
+  document.getElementById('searchBar').style.display='none';
+  document.getElementById('searchInput').value='';
+  S.searchQ=''; renderAll();
+}
+function onSearch(v) { S.searchQ=v.toLowerCase(); renderAll(); }
+
+// ===== QUICK FÜLLSTAND =====
+function quickFuellstand(id) {
+  const s=S.samen.find(x=>x.id===id); if(!s) return;
+  const v=prompt(`Füllstand "${s.name}" (0–100):`,s.fuell??100);
+  if(v===null) return;
+  s.fuell=Math.max(0,Math.min(100,parseInt(v)||0));
+  save(); renderAll();
+  showToast(`📊 ${s.fuell}%`);
+}
+
+// ===== TOAST =====
+function showToast(msg) {
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+
+// ===== TOUCH: visual feedback only =====
+// All actions are handled by onclick — this only adds the press effect
+document.addEventListener('touchstart', e => {
+  const el = e.target.closest('button, .mpill, .marke-chip');
+  if (el) el.style.opacity = '0.55';
+}, {passive: true});
+document.addEventListener('touchend', e => {
+  const el = e.target.closest('button, .mpill, .marke-chip');
+  if (el) setTimeout(() => el.style.opacity = '', 150);
+}, {passive: true});
+document.addEventListener('touchcancel', () => {
+  document.querySelectorAll('button, .mpill, .marke-chip').forEach(el => el.style.opacity = '');
+}, {passive: true});
+
+function pickEmoji(el, e) {
+  S._editEmoji = e;
+  document.getElementById('pickedEmoji').textContent = e;
+}
+function pickMkEmoji(el, e) {
+  S._mkEmoji = e;
+  document.getElementById('mkEmoji').textContent = e;
+}
+
+// Delegated click for dynamically rendered card buttons
+document.getElementById('mainContent').addEventListener('click', function(e) {
+  const btn = e.target.closest('[data-action]');
+  if (!btn) return;
+  const id = btn.dataset.id;
+  const action = btn.dataset.action;
+  if (action === 'edit') openSamenSheet(id);
+  else if (action === 'fuell') quickFuellstand(id);
+  else if (action === 'editkal') openManKalSheet(id);
+});
+
+document.getElementById('mainContent').addEventListener('touchend', function(e) {
+  const btn = e.target.closest('[data-action]');
+  if (!btn) return;
+  e.preventDefault();
+  const id = btn.dataset.id;
+  const action = btn.dataset.action;
+  if (action === 'edit') openSamenSheet(id);
+  else if (action === 'fuell') quickFuellstand(id);
+  else if (action === 'editkal') openManKalSheet(id);
+}, {passive: false});
+
+// Helper functions for onclick (iOS fallback)
+function toggleSpill(pid, m) {
+  const arr=pid==='pillsV'?S._va:pid==='pillsD'?S._vd:S._ve;
+  const i=arr.indexOf(m); if(i>-1)arr.splice(i,1);else arr.push(m);
+  renderSPills();
+}
+function toggleMkpill(pid, m) {
+  const arr=pid==='mkPillsV'?S._mkV:pid==='mkPillsD'?S._mkD:S._mkE;
+  const i=arr.indexOf(m); if(i>-1)arr.splice(i,1);else arr.push(m);
+  renderMkPills();
+}
+function selectMarke(m) {
+  S._selMarke=S._selMarke===m?'':m;
+  if(S._selMarke) document.getElementById('sMarkeCustom').value='';
+  renderMarkeChips();
+}
+
+// Init
+load();
+if(!S.activeKat&&S.cats.length) S.activeKat=S.cats[0].id;
+S.activeSub='alle';
+renderAll();
+</script>
+
+<div class="bottom-nav" id="bottomNav">
+  <button class="bnav-btn active" id="bnav-katalog" onclick="switchTab('katalog')">
+    <span class="bnav-icon">🗂</span><span class="bnav-label">Katalog</span>
+  </button>
+  <button class="bnav-btn" id="bnav-kalender" onclick="switchTab('kalender')">
+    <span class="bnav-icon">🗓</span><span class="bnav-label">Kalender</span>
+  </button>
+  <button class="bnav-btn" id="bnav-jetzt" onclick="switchTab('jetzt')">
+    <span class="bnav-icon">✨</span><span class="bnav-label">Jetzt</span>
+  </button>
+  <button class="bnav-btn" id="bnav-shop" onclick="switchTab('shop')">
+    <span class="bnav-icon">🛒</span><span class="bnav-label">Einkauf</span>
+  </button>
+</div>
+</body>
+</html>
