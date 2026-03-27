@@ -381,7 +381,7 @@ textarea.fi { resize: none; }
 <script>
 const MONTHS = ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
 const NOW_M = new Date().getMonth();
-const MARKEN = ['Dehner','Deine Gartenwelt','Dürr','Flortus','Gardenline','Kiepenkerl','Quedlinburger','Sperli'];
+const MARKEN = ['Dehner','Deine Gartenwelt','Dürr','Flortus','Gardenline','Grüne Fee','Horti Tops','Kiepenkerl','Own Grown','Quedlinburger','Sperli'];
 
 let S = {
   tab: 'katalog',
@@ -751,7 +751,7 @@ function openSamenSheet(id) {
   const yearSel = document.getElementById('sMhdJahr');
   yearSel.innerHTML = '<option value="">– Jahr –</option>';
   const curYear = new Date().getFullYear();
-  for(let y=curYear; y<=curYear+10; y++) {
+  for(let y=2024; y<=curYear+10; y++) {
     yearSel.innerHTML += `<option value="${y}">${y}</option>`;
   }
   // set values from saved mhd (format: YYYY-MM-01)
